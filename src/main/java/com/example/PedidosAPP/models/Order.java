@@ -42,7 +42,7 @@ public class Order {
 
 
     @ManyToOne
-    @JoinColumn (name = "fk_order",referencedColumnName = "id_order")
+    @JoinColumn (name = "fk_store",referencedColumnName = "id_stores")
     @JsonBackReference
     private Store stores;
 
@@ -50,6 +50,12 @@ public class Order {
     @JoinColumn (name = "fk_detail", referencedColumnName = "id_detail")
     @JsonBackReference
     private Detail details;
+
+
+
+
+
+
 
 
 

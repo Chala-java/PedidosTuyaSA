@@ -51,6 +51,11 @@ public class Order {
     @JsonBackReference
     private Detail details;
 
+    @ManyToOne
+    @JoinColumn (name = "fk_product", referencedColumnName = "id_product")
+    @JsonBackReference
+    private Product products;
+
 
 
 

@@ -30,6 +30,8 @@ public class Product {
     @JoinColumn(name = "fk_detail", referencedColumnName = "id_detail")
     private Detail details;
 
+
+
     public Product() {
 
     }

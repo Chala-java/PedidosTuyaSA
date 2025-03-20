@@ -1,10 +1,9 @@
 package com.example.PedidosAPP.models;
 
-import com.example.PedidosAPP.ayudas.enums.DealerEnum;
 import com.example.PedidosAPP.ayudas.enums.DeliveryEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +18,12 @@ public class Delivery {
     private LocalDateTime delivery_date;
     @Column(name="status_delivery", columnDefinition = "VARCHAR(10) DEFAULT 'ASSIGNED' ")
     private DeliveryEnum delivery_status;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn (name = "fk_dealer", referencedColumnName = "id_dealer")
+    private Dealer dealers;
+
 
     public Delivery (){
 

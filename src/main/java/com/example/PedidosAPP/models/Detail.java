@@ -1,8 +1,10 @@
 package com.example.PedidosAPP.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table (name = "Detail_Table")
@@ -16,6 +18,14 @@ public class Detail {
     private Integer quantity;
     @Column (name = "subtotal_detail",nullable = false)
     private BigDecimal subtotal;
+
+    @OneToMany (mappedBy = "detail")
+    @JsonManagedReference
+    private List <Order> orders;
+
+    @OneToMany (mappedBy = "detail")
+    @JsonManagedReference
+    private List <Product> products;
 
 
     public Detail (){

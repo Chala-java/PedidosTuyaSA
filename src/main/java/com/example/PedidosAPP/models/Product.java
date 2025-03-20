@@ -1,35 +1,47 @@
 package com.example.PedidosAPP.models;
 
-import com.example.PedidosAPP.ayudas.enums.StoreEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import org.w3c.dom.Text;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table (name = "Item_Table")
 
-public class Item {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_item")
+    @Column(name = "id_product")
     private Integer id_Item;
-    @Column(name = "name_item",length = 100,nullable = false)
+    @Column(name = "name_product",length = 100,nullable = false)
     private String name;
-    @Column(name = "price_item",nullable = false)
+    @Column(name = "price_product",nullable = false)
     private BigDecimal price;
-    @Column(name = "description_item", nullable = true)
+    @Column(name = "description_product", nullable = true)
     private String description;
 
-    public Item() {
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "fk_store", referencedColumnName = "id_store")
+    private Store store;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "fk_detail", referencedColumnName = "id_detail")
+    private Detail details;
+
+    public Product() {
 
     }
 
-    public Item(Integer id_Item, String name, BigDecimal price, String description) {
+
+    public Product(Integer id_Item, String name, BigDecimal price, String description, Store store, Detail details) {
         this.id_Item = id_Item;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.store = store;
+        this.details = details;
     }
 
     public Integer getId_Item() {
@@ -62,5 +74,21 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public Detail getDetails() {
+        return details;
+    }
+
+    public void setDetails(Detail details) {
+        this.details = details;
     }
 }

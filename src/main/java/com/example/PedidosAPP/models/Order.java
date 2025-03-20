@@ -1,11 +1,14 @@
 package com.example.PedidosAPP.models;
 
 import com.example.PedidosAPP.ayudas.enums.OrderEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table (name = "Order_Table")
@@ -24,6 +27,34 @@ public class Order {
     private LocalDateTime order_date;
     @Column (name = "order_total",nullable = false)
     private BigDecimal total;
+
+
+
+    @ManyToOne
+    @JoinColumn (name = "fk_user",referencedColumnName = "id_user")
+    @JsonBackReference
+    private User users;
+
+    @ManyToOne
+    @JoinColumn (name = "fk_payment", referencedColumnName = "id_payment")
+    @JsonBackReference
+    private Payment payments;
+
+
+    @ManyToOne
+    @JoinColumn (name = "fk_order",referencedColumnName = "id_order")
+    @JsonBackReference
+    private Store stores;
+
+    @ManyToOne
+    @JoinColumn (name = "fk_detail", referencedColumnName = "id_detail")
+    @JsonBackReference
+    private Detail details;
+
+
+
+
+
     public Order (){
 
     }

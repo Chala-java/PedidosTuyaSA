@@ -1,7 +1,10 @@
 package com.example.PedidosAPP.models;
 
 import com.example.PedidosAPP.ayudas.enums.DealerEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Dealer_Table")
@@ -20,7 +23,12 @@ public class Dealer {
     @Column(name = "type_dealer",length = 50, nullable = true)
     private DealerEnum type_dealer;
 
-    public Dealer () {
+    @OneToMany (mappedBy = "dealer")
+    @JsonManagedReference
+    private List <Delivery> deliveries;
+
+
+    public Dealer() {
     }
 
     public Dealer(Integer dealer, String name_dealer, String phone_dealer, String email, DealerEnum type_dealer) {

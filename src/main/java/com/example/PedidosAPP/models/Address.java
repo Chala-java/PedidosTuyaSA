@@ -1,5 +1,6 @@
 package com.example.PedidosAPP.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,6 +26,11 @@ public class Address {
         this.postcode = postcode;
         this.country = country;
     }
+
+    @ManyToOne
+    @JoinColumn (name = "fk_user",referencedColumnName = "id_user")
+    @JsonBackReference
+    private User users;
 
     public Integer getId_address() {
         return id_address;

@@ -1,7 +1,10 @@
 package com.example.PedidosAPP.models;
 
 import com.example.PedidosAPP.ayudas.enums.StoreEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table (name="Store_Table")
@@ -21,6 +24,14 @@ public class Store {
     private String phoneNumber;
     @Column (name="typestore_store",length = 50,nullable = true)
     private StoreEnum typestore;
+
+    @OneToMany (mappedBy = "store")
+    @JsonManagedReference
+    private List <Order> orders;
+
+    @OneToMany (mappedBy = "store")
+    @JsonManagedReference
+    private List <Product> products;
 
     public Store () {
 

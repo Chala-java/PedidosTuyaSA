@@ -19,6 +19,10 @@ public class controllerUser {
     //instancias
     @PostMapping
     public ResponseEntity<?>save(@RequestBody User requestData) {
+        //RequestBody es para los datos que necesita del servicio
+        //@PathVariable es para indicar el ID del servicio
+        //status es para ver si se hizo el cambio o no como Ok de bien y Bad para mal
+        //body aqui va el cuerpo de la solicitud que le va a hacer a servicio
         //(dejar la variable fuera del operador diamante cuando es tipo lista se usa lista,
         //entonces cuando no se sabe qué respuesta da se usa, él (?) Significa cualquier cosa trabajar DTO
         //para entender como utilizar el operador diamante)
@@ -31,6 +35,7 @@ public class controllerUser {
 
         }
     }
+
         //Buscar todos
         @GetMapping
         public ResponseEntity<?> searchAll () {
@@ -42,7 +47,7 @@ public class controllerUser {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
             }
         }
-    }
+
     //Buscar por id
 
     //HttpStatus.Ok cuando busca
@@ -52,7 +57,7 @@ public class controllerUser {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(this.use
+                    .body(this.userService.searchUserbyId(id));
         } catch (Exception error) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST).
@@ -74,7 +79,7 @@ public class controllerUser {
                         .body(error.getMessage());
             }
         }
-    }
+
     //Eliminar
     @DeleteMapping("/{id}")
     public ResponseEntity <?> delete(@PathVariable Integer id){

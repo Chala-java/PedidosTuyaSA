@@ -26,6 +26,7 @@ public class UserServices {
     }
 
     // Método para buscar todos los registros
+    //se llaman todos los registro con una lista
     public List<User> searchAllUser() throws Exception {
         try {
             return this.repository.findAll();  // Asegúrate de devolver el resultado
@@ -65,6 +66,9 @@ public class UserServices {
     }
 
     // Método para eliminar por ID
+    //si el usuario es encontrado y esta presente se llama
+    //el delete cuando sucede si pasa estos parametros se retorna un true
+    // sino dice que no na sido encontrado
     public boolean eliminarUsuario(Integer id) throws Exception {
         try {
             Optional<User> usuarioBuscado = this.repository.findById(id);

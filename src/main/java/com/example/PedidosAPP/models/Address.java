@@ -19,6 +19,15 @@ public class Address {
     @Column(name = "country_address",length = 50, nullable = false)
     private String country;
 
+    @ManyToOne
+    @JoinColumn (name = "fk_user",referencedColumnName = "id_user")
+    @JsonBackReference(value = "users-address")
+    private User users;
+
+    public Address(){
+
+    }
+
     public Address(Integer id_address, String street, String city, String postcode, String country) {
         this.id_address = id_address;
         this.street = street;
@@ -26,11 +35,6 @@ public class Address {
         this.postcode = postcode;
         this.country = country;
     }
-
-    @ManyToOne
-    @JoinColumn (name = "fk_user",referencedColumnName = "id_user")
-    @JsonBackReference
-    private User users;
 
     public Integer getId_address() {
         return id_address;

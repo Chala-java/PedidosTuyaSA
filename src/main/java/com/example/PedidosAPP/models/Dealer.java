@@ -23,8 +23,8 @@ public class Dealer {
     @Column(name = "type_dealer",length = 50, nullable = true)
     private DealerEnum type_dealer;
 
-    @OneToMany (mappedBy = "dealer")
-    @JsonManagedReference
+    @OneToMany (mappedBy = "dealers")
+    @JsonManagedReference (value = "dealer-deliveries")
     private List <Delivery> deliveries;
 
 

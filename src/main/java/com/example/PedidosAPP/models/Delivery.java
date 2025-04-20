@@ -20,7 +20,7 @@ public class Delivery {
     private DeliveryEnum delivery_status;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "dealer-deliveries")
     @JoinColumn (name = "fk_dealer", referencedColumnName = "id_dealer")
     private Dealer dealers;
 

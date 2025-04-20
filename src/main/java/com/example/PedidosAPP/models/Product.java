@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table (name = "Item_Table")
+@Table (name = "Product_Table")
 
 public class Product {
     @Id
@@ -21,12 +21,12 @@ public class Product {
     private String description;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "store-products")
     @JoinColumn(name = "fk_store", referencedColumnName = "id_store")
-    private Store store;
+    private Store stores;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "details-products")
     @JoinColumn(name = "fk_detail", referencedColumnName = "id_detail")
     private Detail details;
 
@@ -36,13 +36,12 @@ public class Product {
 
     }
 
-
-    public Product(Integer id_Item, String name, BigDecimal price, String description, Store store, Detail details) {
+    public Product(Integer id_Item, String name, BigDecimal price, String description, Store stores, Detail details) {
         this.id_Item = id_Item;
         this.name = name;
         this.price = price;
         this.description = description;
-        this.store = store;
+        this.stores = stores;
         this.details = details;
     }
 
@@ -78,12 +77,12 @@ public class Product {
         this.description = description;
     }
 
-    public Store getStore() {
-        return store;
+    public Store getStores() {
+        return stores;
     }
 
-    public void setStore(Store store) {
-        this.store = store;
+    public void setStores(Store stores) {
+        this.stores = stores;
     }
 
     public Detail getDetails() {

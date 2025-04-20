@@ -25,12 +25,12 @@ public class Store {
     @Column (name="typestore_store",length = 50,nullable = true)
     private StoreEnum typestore;
 
-    @OneToMany (mappedBy = "store")
-    @JsonManagedReference
+    @OneToMany (mappedBy = "stores")
+    @JsonManagedReference(value = "store-orders")
     private List <Order> orders;
 
-    @OneToMany (mappedBy = "store")
-    @JsonManagedReference
+    @OneToMany (mappedBy = "stores")
+    @JsonManagedReference(value = "store-products")
     private List <Product> products;
 
     public Store () {

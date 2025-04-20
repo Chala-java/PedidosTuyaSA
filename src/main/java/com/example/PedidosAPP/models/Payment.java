@@ -24,8 +24,8 @@ public class Payment {
     @Column(name = "payment_data", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime payment_date;
 
-    @OneToMany (mappedBy = "payment")
-    @JsonManagedReference
+    @OneToMany (mappedBy = "payments")
+    @JsonManagedReference(value = "payments-orders")
     private List <Order> orders;
 
     public Payment() {

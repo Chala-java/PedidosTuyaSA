@@ -26,12 +26,12 @@ public class User {
     @Column (name = "type_user",length = 50, nullable = false)
     private UserEnum typeUSer;
 
-    @OneToMany(mappedBy = "user")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "users")
+    @JsonManagedReference(value = "user-orders")
     private List<Order> orders;
 
-    @OneToMany (mappedBy = "user")
-    @JsonManagedReference
+    @OneToMany (mappedBy = "users")
+    @JsonManagedReference(value = "users-address")
     private List <Address> addresses;
 
 

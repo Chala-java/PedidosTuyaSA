@@ -19,12 +19,12 @@ public class Detail {
     @Column (name = "subtotal_detail",nullable = false)
     private BigDecimal subtotal;
 
-    @OneToMany (mappedBy = "detail")
-    @JsonManagedReference
+    @OneToMany (mappedBy = "details")
+    @JsonManagedReference(value = "detail-order")
     private List <Order> orders;
 
-    @OneToMany (mappedBy = "detail")
-    @JsonManagedReference
+    @OneToMany (mappedBy = "details")
+    @JsonManagedReference(value = "details-products")
     private List <Product> products;
 
 

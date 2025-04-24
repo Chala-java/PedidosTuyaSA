@@ -27,7 +27,7 @@ public class User {
     private UserEnum typeUSer;
 
     @OneToMany(mappedBy = "users")
-    @JsonManagedReference(value = "user-orders")
+    @JsonManagedReference(value = "users-orders")
     private List<Order> orders;
 
     @OneToMany (mappedBy = "users")
